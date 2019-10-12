@@ -1,6 +1,6 @@
 {
   "name": "@theshooter/tq-logger",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Very simple console.log wrapper tailored for tanque's unique job...",
   "main": "src/index.js",
   "scripts": {
