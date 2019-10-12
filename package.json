@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/TheShooter89/tq-logger/issues"
   },
-  "homepage": "https://github.com/TheShooter89/tq-logger#readme"
+  "homepage": "https://github.com/TheShooter89/tq-logger#readme",
+  "dependencies": {}
 }
