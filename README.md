@@ -132,7 +132,7 @@ const OPTIONS = {
 ---
 Log Levels IDENTIFIERS:
 
-| level | identifier ||
+| level | IDENTIFIER | identifier |
 |---|:---:|:---:|
 |error|'ERROR'|'error'|
 |warning|'WARNING'|'warning'|

@@ -45,16 +45,15 @@ const logger = (component_name, global_options) => {
 
     const log_wrapper = (...[message, log_level, log_section, ...rest]) => {
         let additional_params = rest;
-        let time_stamp = getFormattedTimestamp();let parse_settings = check_settings(log_level, log_section);
+        let time_stamp = getFormattedTimestamp();
+        let parse_settings = check_settings(log_level, log_section);
         if (parse_settings.standard_args) {
             additional_params = [ ...parse_settings.standard_args, ...additional_params];
         }
         let level = parse_settings.level;
         let section= parse_settings.section;
         
-        let output = [message, additional_params];
-
-        //console.log("output: ", output);
+        let output = [message, ...additional_params];
 
         if (!is_debugging) {
             if (!isFirstRun) {
@@ -145,14 +144,16 @@ const check_settings = (...settings) => {
 
     let std_args = [];
 
-    settings.map((el) => {
-        check_level(el) ?
+    settings.map((el, ind) => {
+        check_level(el) && check_level(el) !== 'INFO' ?
         out_settings.level = check_level(el) :
         check_section(el) ?
-        out_settings.section = check_section(el) : std_args.push(el)
+        out_settings.section = check_section(el) :
+        el ?
+        std_args.push(el) : null
     });
 
-    if (!std_args.length) {
+    if (std_args.length > 0) {
         out_settings.standard_args = std_args;
     }
 
@@ -212,7 +213,7 @@ const render_result = (
             style.text[level],
             style.heading[level]
         );
-        console.group(`%c[${section}]:`, style.text[level]);
+        console.group(`%c[${section}]:`, style.heading[level].concat(style.section));
         let [msg, ...additional_opt] = result;
         wLog(...[msg].concat(...additional_opt));
         console.groupEnd();
